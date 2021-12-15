@@ -1,25 +1,39 @@
 ﻿
-@Model IEnumerable<CRUD.Models.Category>
-@{ 
-  ViewBag.Title = "產品分類資料";
+@model IEnumerable<CRUD.Models.Category>
+@{
+    ViewBag.Title = "產品分類資料";
 }
-    <h2>產品分類資料</h2>
-    <table class="table table-bordered table-hover">
-        <thead>
+<style>
+    #CategoryList {
+        border: 1px solid green;
+        border-collapse: collapse;
+        width: 700px;
+        margin-top: 10px;
+    }
+
+        #CategoryList th, #CategoryList td {
+            border: 1px solid green;
+            padding: 4px;
+        }
+</style>
+
+<h2>產品分類資料</h2>
+<table id="CategoryList" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>分類編號</th>
+            <th>分類名稱</th>
+            <th>描述</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var _category in Model)
+        {
             <tr>
-                <th>分類編號</th>
-                <th>分類名稱</th>
-                <th>描述</th>
+                <td>@_category.CategoryID</td>
+                <td>@_category.CategoryName</td>
+                <td>@_category.Description</td>
             </tr>
-        </thead> 
-        <tbody>
-            @foreach(var _category in Model)
-            {
-                <tr>
-                    <td>@_category.CategoryId</td>
-                    <td>@_category.CategoryName</td>
-                    <td>@_category.Description</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+        }
+    </tbody>
+</table>
