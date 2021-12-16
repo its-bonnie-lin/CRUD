@@ -1,0 +1,40 @@
+﻿
+<style>
+    #content div
+    {
+        width:400px;
+        border-bottom:1px solid #d2dadd;
+        padding-bottom:3px;
+        margin-bottom:10px;
+    }
+    #content div:nth-child(3)
+    {
+        text-align:center;
+    }
+    #contenr label
+    {
+        width:80px;
+        float:left;
+        text-align:right;
+        padding-right:10px;
+    }
+    #content #Descrription{
+        width:300px;
+    }
+</style>
+<h2>產品分類新增</h2>
+<form method="post" action="/Category/Insert">
+    <div id="content">
+        <div>
+            <label for="CategoryName">分類名稱 :</label>
+            <input type="text" name="CategoryName" id="CategoryName"/>
+        </div>
+        <div>
+            <label for="Description">分類描述 :</label>
+            <input type="text" name="Description" id="Descrription" />
+        </div>
+        <div>
+            <input type="submit" value="新增" />
+        </div>
+    </div>
+</form>

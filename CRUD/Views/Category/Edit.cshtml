@@ -1,0 +1,46 @@
+﻿
+@model CRUD.Models.Category 
+@{
+    ViewBag.Title = "Edit";
+}
+<style>
+    #content div
+    {
+        width:400px;
+        border-bottom:1px solid #d2dadd;
+        padding-bottom:3px;
+        margin-bottom:10px;
+    }
+    #content div:nth-child(3)
+    {
+        text-align:center;
+    }
+    #content label
+    {
+        width:80px;
+        float:left;
+        text-align:right;
+        padding-right:10px;
+    }
+    #content #Description
+    {
+        width:300px;
+    }
+</style>
+<h2>產品分類修改</h2>
+<div id="content">
+    <form method="post" action="/Category/Edit">
+        <input type="hidden" name="CategoryID" value="@Model.CategoryID"/>
+        <div>
+            <label for="CategoryName">分類名稱 :</label>
+            <input type="text" name="CategoryName" id="CategoryName" value="@Model.CategoryName"/>
+        </div>
+        <div>
+            <label for="Description">分類描述 :</label>
+            <input type="text" name="Description" id="Description" value="@Model.Description"/>
+        </div>
+        <div>
+            <input type="submit" value="修改"/>
+        </div>
+    </form>
+</div>

@@ -18,12 +18,15 @@
 </style>
 
 <h2>產品分類資料</h2>
+<a href ="/Category/Add">新增分類</a>
 <table id="CategoryList" class="table table-bordered table-hover">
     <thead>
         <tr>
             <th>分類編號</th>
             <th>分類名稱</th>
             <th>描述</th>
+            <th>編輯</th>
+            <th>刪除</th>
         </tr>
     </thead>
     <tbody>
@@ -33,6 +36,8 @@
                 <td>@_category.CategoryID</td>
                 <td>@_category.CategoryName</td>
                 <td>@_category.Description</td>
+                <td><a href="/Category/Edit/@_category.CategoryID">編輯</a></td>
+                <td><a href="/Category/Delete/@_category.CategoryID">刪除</a></td>
             </tr>
         }
     </tbody>
