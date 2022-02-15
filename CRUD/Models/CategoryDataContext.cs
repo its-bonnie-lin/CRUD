@@ -8,7 +8,7 @@ namespace CRUD.Models
 {
     public class CategoryDataContext
     {
-       static string strConn = "Data Source = PC-295\\SQLEXPRESS;Initial Catalog = Northwind; Persist Security Info=True;User ID = bonniebonnie; Password=bonniebonnie";
+       static string strConn = "Data Source=DESKTOP-A2LR1LQ;Initial Catalog=Northwind;Persist Security Info=True;User ID=bonniebonnie;Password=bonniebonnie";
         
        //讀取所有產品分類資料
        public static List<Category> LoadCategories()

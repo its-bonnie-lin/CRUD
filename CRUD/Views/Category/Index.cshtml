@@ -18,8 +18,9 @@
             if ($("input:checkbox[name='checkboxs']:checked").length <= 0) { alert("您未勾選!"); return; }
             if (confirm("您確定要刪除嗎?")) {
                 var checkboxsVal = new Array();
+                const CategoryID = CategoryList.getAttribute('CategoryID');
                 $("input[name='checkboxs']:checkbox:checked").each(function () {
-                    checkboxsVal.push($(this).val());
+                      CategoryID.push($(this).val());
                 });
                 $.ajax({
                     type: 'post',
@@ -71,7 +72,7 @@
         @foreach (var _category in Model)
         {
             <tr>
-                <td><input type="checkbox" name="checkboxs" /></td>
+                <td>@Html.CheckBox("checkboxs", new { CategoryID = _category.CategoryID })</td>
                 <td>@_category.CategoryID</td>
                 <td>@_category.CategoryName</td>
                 <td>@_category.Description</td>
