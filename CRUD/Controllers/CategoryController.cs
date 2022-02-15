@@ -15,6 +15,17 @@ namespace CRUD.Controllers
             List<Category> categories = CategoryDataContext.LoadCategories();
             return View(categories);
         }
+        /// <summary>
+        /// checkbox批次刪除
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult CheckBoxBatchDelete(Category category)
+        {
+            CategoryDataContext.DeleteCategory();
+            return RedirectToAction("Index");
+        }
+
         //新增產品分類
         public ActionResult Add()
         {

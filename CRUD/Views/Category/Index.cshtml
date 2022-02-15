@@ -1,8 +1,43 @@
-﻿
-@model IEnumerable<CRUD.Models.Category>
+﻿@model IEnumerable<CRUD.Models.Category>
 @{
     ViewBag.Title = "產品分類資料";
 }
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#checkall").click(function () {
+            if ($("#checkall").prop("checked")) {
+                $("input[name='checkboxs']").prop("checked", true);
+            }
+            else {
+                $("input[name='checkboxs']").prop("checked", false);
+            }
+        })
+
+        $("#batchdelete").click(function () {
+            if ($("input:checkbox[name='checkboxs']:checked").length <= 0) { alert("您未勾選!"); return; }
+            if (confirm("您確定要刪除嗎?")) {
+                var checkboxsVal = new Array();
+                $("input[name='checkboxs']:checkbox:checked").each(function () {
+                    checkboxsVal.push($(this).val());
+                });
+                $.ajax({
+                    type: 'post',
+                    traditional: true,
+                    url: '/CheckBoxBatchDelete',
+                    data: { 'checkboxsVal': checkboxsVal },
+                    success: function (data) {
+                        alert("刪除成功");
+                        location.replace("/index");
+                    }
+                });
+            }
+            return false;
+        })
+    })
+    
+</script>
+
 <style>
     #CategoryList {
         border: 1px solid green;
@@ -18,10 +53,13 @@
 </style>
 
 <h2>產品分類資料</h2>
-<a href ="/Category/Add">新增分類</a>
+<a href="/Category/Add">新增分類</a>
+<input type="checkbox" name="ckeckall" id="checkall" />
+<input type="button" name="batchdelete" id="batchdelete" value="刪除" />
 <table id="CategoryList" class="table table-bordered table-hover">
     <thead>
         <tr>
+            <th>選擇</th>
             <th>分類編號</th>
             <th>分類名稱</th>
             <th>描述</th>
@@ -33,6 +71,7 @@
         @foreach (var _category in Model)
         {
             <tr>
+                <td><input type="checkbox" name="checkboxs" /></td>
                 <td>@_category.CategoryID</td>
                 <td>@_category.CategoryName</td>
                 <td>@_category.Description</td>
