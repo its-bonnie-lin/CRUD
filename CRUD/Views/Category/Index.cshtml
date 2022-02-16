@@ -17,25 +17,26 @@
         $("#batchdelete").click(function () {
             if ($("input:checkbox[name='checkboxs']:checked").length <= 0) { alert("您未勾選!"); return; }
             if (confirm("您確定要刪除嗎?")) {
-                var checkboxsVal = new Array();
-                const CategoryID = CategoryList.getAttribute('CategoryID');
+                var checkboxsArray = [];
                 $("input[name='checkboxs']:checkbox:checked").each(function () {
-                      CategoryID.push($(this).val());
+                    checkboxsArray.push($(this).val());
                 });
+
                 $.ajax({
                     type: 'post',
                     traditional: true,
                     url: '/CheckBoxBatchDelete',
-                    data: { 'checkboxsVal': checkboxsVal },
+                    data: { checkboxsArray },
                     success: function (data) {
                         alert("刪除成功");
                         location.replace("/index");
                     }
+
                 });
             }
             return false;
-        })
-    })
+        });
+    });
     
 </script>
 
@@ -72,7 +73,7 @@
         @foreach (var _category in Model)
         {
             <tr>
-                <td>@Html.CheckBox("checkboxs", new { CategoryID = _category.CategoryID })</td>
+                <td>@Html.CheckBox("checkboxs", new { Value = _category.CategoryID })</td>
                 <td>@_category.CategoryID</td>
                 <td>@_category.CategoryName</td>
                 <td>@_category.Description</td>

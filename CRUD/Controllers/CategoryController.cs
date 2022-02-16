@@ -19,14 +19,14 @@ namespace CRUD.Controllers
         /// checkbox批次刪除
         /// </summary>
         /// <returns></returns>
-       /*
+       
         [HttpPost]
-        public ActionResult CheckBoxBatchDelete(Category category)
+        public ActionResult CheckBoxBatchDelete(int[] arrayOfValues)
         {
-            CategoryDataContext.DeleteCategory();
+            
             return RedirectToAction("Index");
         }
-       */
+       
         //新增產品分類
         public ActionResult Add()
         {
