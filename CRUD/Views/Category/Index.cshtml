@@ -21,17 +21,20 @@
                 $("input[name='checkboxs']:checkbox:checked").each(function () {
                     checkboxsList += $(this).attr('CategoryID')+",";
                 });
+                checkboxsList = checkboxsList.substring(0, checkboxsList.length - 1);
 
                 $.ajax({
                     type: 'post',
                     traditional: true,
-                    url: '/CheckBoxBatchDelete',
+                    url: '/Category/CheckBoxBatchDelete',
                     data: { checkboxsList: checkboxsList },
                     success: function (data) {
                         alert("刪除成功");
-                        location.replace("/index");
+                        location.replace("/Category/Index");                       
+                    },
+                    error: function (data) {
+                        alert("刪除失敗");
                     }
-
                 });
             }
             return false;

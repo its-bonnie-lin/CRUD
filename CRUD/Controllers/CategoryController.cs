@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CRUD.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace CRUD.Controllers
 {
@@ -18,12 +19,16 @@ namespace CRUD.Controllers
         /// <summary>
         /// checkbox批次刪除
         /// </summary>
-        /// <returns></returns>
-       
+        /// <returns></returns>      
         [HttpPost]
         public ActionResult CheckBoxBatchDelete(string checkboxsList)
         {
-            
+            string[] CheckboxIDs = checkboxsList.Split(',');
+            foreach (var CheckboxID in CheckboxIDs)
+            {
+                CategoryDataContext.DeleteCategory(Convert.ToInt32(CheckboxID));
+            }
+
             return RedirectToAction("Index");
         }
        
@@ -33,12 +38,18 @@ namespace CRUD.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Insert()
+        public ActionResult Insert(Category _category)
         {
-            Category _category = new Category();
-            _category.CategoryName = Request.Form["CategoryName"];
-            _category.Description = Request.Form["Description"];
-            CategoryDataContext.InsertCategory(_category);
+            if (!ModelState.IsValid)
+            {
+                return View("Add");
+            }
+           /*
+              Category _category = new Category();
+              _category.CategoryName = Request.Form["CategoryName"];
+              _category.Description = Request.Form["Description"];
+              CategoryDataContext.InsertCategory(_category); 
+           */
             return RedirectToAction("Index");
         }
         //取得修改產品前產品分類資料

@@ -1,25 +1,26 @@
 ﻿
+@model CRUD.Models.Category
 <style>
-    #content div
-    {
-        width:400px;
-        border-bottom:1px solid #d2dadd;
-        padding-bottom:3px;
-        margin-bottom:10px;
+    #content div {
+        width: 400px;
+        border-bottom: 1px solid #d2dadd;
+        padding-bottom: 3px;
+        margin-bottom: 10px;
     }
-    #content div:nth-child(3)
-    {
-        text-align:center;
+
+        #content div:nth-child(3) {
+            text-align: center;
+        }
+
+    #contenr label {
+        width: 80px;
+        float: left;
+        text-align: right;
+        padding-right: 10px;
     }
-    #contenr label
-    {
-        width:80px;
-        float:left;
-        text-align:right;
-        padding-right:10px;
-    }
-    #content #Descrription{
-        width:300px;
+
+    #content #Descrription {
+        width: 300px;
     }
 </style>
 <h2>產品分類新增</h2>
@@ -27,7 +28,8 @@
     <div id="content">
         <div>
             <label for="CategoryName">分類名稱 :</label>
-            <input type="text" name="CategoryName" id="CategoryName"/>
+            <input type="text" name="CategoryName" id="CategoryName" />
+            @Html.ValidationMessageFor(t => t.CategoryName,"", new { @class = "text-danger" })
         </div>
         <div>
             <label for="Description">分類描述 :</label>
