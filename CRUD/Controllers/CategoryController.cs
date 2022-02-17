@@ -21,7 +21,7 @@ namespace CRUD.Controllers
         /// <returns></returns>
        
         [HttpPost]
-        public ActionResult CheckBoxBatchDelete(int[] arrayOfValues)
+        public ActionResult CheckBoxBatchDelete(string checkboxsList)
         {
             
             return RedirectToAction("Index");
