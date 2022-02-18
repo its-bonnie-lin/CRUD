@@ -44,12 +44,12 @@ namespace CRUD.Controllers
             {
                 return View("Add");
             }
-           /*
-              Category _category = new Category();
-              _category.CategoryName = Request.Form["CategoryName"];
-              _category.Description = Request.Form["Description"];
-              CategoryDataContext.InsertCategory(_category); 
-           */
+            /*
+               Category _category = new Category();
+               _category.CategoryName = Request.Form["CategoryName"];
+               _category.Description = Request.Form["Description"];
+            */
+            CategoryDataContext.InsertCategory(_category);          
             return RedirectToAction("Index");
         }
         //取得修改產品前產品分類資料
