@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using CRUD.Models;
 using System.ComponentModel.DataAnnotations;
+using ClosedXML.Excel;
 
 namespace CRUD.Controllers
 {
@@ -78,5 +79,18 @@ namespace CRUD.Controllers
             CategoryDataContext.DeleteCategory(id);
             return RedirectToAction("Index");
         }
+
+        /// <summary>
+        /// 上傳Excel解析為CSV
+        /// </summary>
+        /// <param name="excelFile">上傳檔案</param>
+        /// <param name="callback">處理結果之Javascript函數名稱</param>
+        /// <returns></returns>
+       /*
+        public ActionResult ParseAsCsv(IEnumerable<HttpPostedFileBase> excelFile, string callback)
+        {
+
+        }
+       */
     }
 }

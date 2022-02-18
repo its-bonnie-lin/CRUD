@@ -19,7 +19,7 @@
             if (confirm("您確定要刪除嗎?")) {
                 var checkboxsList = "";
                 $("input[name='checkboxs']:checkbox:checked").each(function () {
-                    checkboxsList += $(this).attr('CategoryID')+",";
+                    checkboxsList += $(this).attr('CategoryID') + ",";
                 });
                 checkboxsList = checkboxsList.substring(0, checkboxsList.length - 1);
 
@@ -30,7 +30,7 @@
                     data: { checkboxsList: checkboxsList },
                     success: function (data) {
                         alert("刪除成功");
-                        location.replace("/Category/Index");                       
+                        location.replace("/Category/Index");
                     },
                     error: function (data) {
                         alert("刪除失敗");
@@ -40,7 +40,7 @@
             return false;
         });
     });
-    
+
 </script>
 
 <style>
@@ -86,3 +86,22 @@
         }
     </tbody>
 </table>
+<form action="@Url.Content("~/Category/ParseAsCsv?callback=parent.fillCsv")" method="POST"
+      enctype="multipart/form-data" target="resultFrame">
+    <button type="submit" id="btnReadExcel">從Excel匯入</button>
+    <input type="file" name="excelFile" />
+    <script>
+        function fillCsv(csv) {
+            var rows = csv.split('\n');
+            //TODO: 未考慮筆數不吻合的情況
+            for (var r = 0; r < rows.length; r++) {
+                var cells = rows[r].split('\t');
+                for (var c = 0; c < cells.length; c++) {
+                    var inp = document.getElementById("C" + r + c);
+                    if (inp) inp.value = cells[c];
+                }
+            }
+        }
+    </script>
+</form>
+<iframe name="resultFrame" style="display:none;"></iframe>
